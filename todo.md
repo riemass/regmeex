@@ -11,3 +11,7 @@ Special character sets: . \d \D \s \S \w \W
 
 Hand write the parser
 Case insensitive match option
+
+Add begin of word / end of word anchors
+Capture groups
+Character sets
