@@ -1,0 +1,47 @@
+WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
+
+
+// SOE = { "/" }
+// EOE = { "/" }
+// CaseOption = { "i" }
+
+regex = _{
+  // "/" ~ "/" |
+  // "/" ~ (alterations | exprs) ~ "/" ~ CaseOption?
+  (Alterations | Exprs)
+}
+
+Alterations = {
+  Exprs ~ ( "|" ~ Exprs)+
+}
+
+Exprs = {
+	Expr+
+}
+
+Expr = {
+  Matcher ~ Quantifier?
+}
+
+Matcher = {
+	ASCII_ALPHANUMERIC
+	//|
+        //"(" ~ alterations ~ ")" |
+        //"(" ~ exprs ~ ")"
+
+	//CharacterSet |
+	//"." |
+	//"\\" ~ "." |
+	// "\\" ~ [dDsSwW] |
+	// "(" ~ hamo ~ ")"
+}
+
+// CharacterSet = { "[" ~ ASCII_ALPHANUMERIC + ~ "]" }
+
+// NumberQuantifier = { "{" ~ "}" }
+ZeroOrOne = { "?" }
+ZeroOrMore = {"*" }
+OneOrMore = { "+" }
+
+Quantifier = _{ ZeroOrOne | ZeroOrMore | OneOrMore }
+// | NumberQuantifier }
